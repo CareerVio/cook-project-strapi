@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "banks",
+  "info": {
+    "singularName": "bank",
+    "pluralName": "banks",
+    "displayName": "Bank"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "shops": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::shop.shop",
+      "mappedBy": "bank"
+    }
+  }
+}

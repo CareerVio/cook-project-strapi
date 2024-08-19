@@ -1,0 +1,77 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shops",
+  "info": {
+    "singularName": "shop",
+    "pluralName": "shops",
+    "displayName": "Shop",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "location": {
+      "type": "text",
+      "required": true
+    },
+    "latitude": {
+      "type": "float",
+      "required": true
+    },
+    "longitude": {
+      "type": "float"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product",
+      "mappedBy": "shop"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "shop"
+    },
+    "bookBankNumber": {
+      "type": "string",
+      "required": true
+    },
+    "bank": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::bank.bank",
+      "inversedBy": "shops"
+    },
+    "bookBankImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
