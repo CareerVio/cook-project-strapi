@@ -14,12 +14,6 @@
     "name": {
       "type": "string",
       "required": true
-    },
-    "shops": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::shop.shop",
-      "mappedBy": "bank"
     }
   }
 }

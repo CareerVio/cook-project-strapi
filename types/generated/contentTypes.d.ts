@@ -820,7 +820,6 @@ export interface ApiBankBank extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
-    shops: Attribute.Relation<'api::bank.bank', 'oneToMany', 'api::shop.shop'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -866,6 +865,40 @@ export interface ApiInvoiceInvoice extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::invoice.invoice',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOilMachineOilMachine extends Schema.CollectionType {
+  collectionName: 'oil_machines';
+  info: {
+    singularName: 'oil-machine';
+    pluralName: 'oil-machines';
+    displayName: 'Oil Machine';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    location: Attribute.String & Attribute.Required;
+    status: Attribute.Enumeration<['active', 'inactive']> &
+      Attribute.DefaultTo<'active'>;
+    latitude: Attribute.String & Attribute.Required;
+    longitude: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::oil-machine.oil-machine',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::oil-machine.oil-machine',
       'oneToOne',
       'admin::user'
     > &
@@ -929,12 +962,11 @@ export interface ApiRecycleMachineRecycleMachine extends Schema.CollectionType {
   };
   attributes: {
     location: Attribute.Text & Attribute.Required;
-    latitude: Attribute.Float & Attribute.Required;
-    longitude: Attribute.Float & Attribute.Required;
-    points: Attribute.Float & Attribute.Required;
     status: Attribute.Enumeration<['active', 'inactive']> &
       Attribute.Required &
       Attribute.DefaultTo<'active'>;
+    latitude: Attribute.String & Attribute.Required;
+    longitude: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1020,11 +1052,6 @@ export interface ApiShopShop extends Schema.CollectionType {
       'oneToMany',
       'api::product.product'
     >;
-    users_permissions_user: Attribute.Relation<
-      'api::shop.shop',
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
     image: Attribute.Media<'images'> & Attribute.Required;
     user: Attribute.Relation<
       'api::shop.shop',
@@ -1032,8 +1059,8 @@ export interface ApiShopShop extends Schema.CollectionType {
       'plugin::users-permissions.user'
     >;
     bookBankNumber: Attribute.String & Attribute.Required;
-    bank: Attribute.Relation<'api::shop.shop', 'manyToOne', 'api::bank.bank'>;
     bookBankImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    bankName: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1064,6 +1091,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::bank.bank': ApiBankBank;
       'api::invoice.invoice': ApiInvoiceInvoice;
+      'api::oil-machine.oil-machine': ApiOilMachineOilMachine;
       'api::product.product': ApiProductProduct;
       'api::recycle-machine.recycle-machine': ApiRecycleMachineRecycleMachine;
       'api::redeem.redeem': ApiRedeemRedeem;

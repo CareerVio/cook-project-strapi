@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "recycle_machines",
+  "collectionName": "oil_machines",
   "info": {
-    "singularName": "recycle-machine",
-    "pluralName": "recycle-machines",
-    "displayName": "Recycle Machine",
-    "description": ""
+    "singularName": "oil-machine",
+    "pluralName": "oil-machines",
+    "displayName": "Oil Machine"
   },
   "options": {
     "draftAndPublish": true
@@ -13,7 +12,7 @@
   "pluginOptions": {},
   "attributes": {
     "location": {
-      "type": "text",
+      "type": "string",
       "required": true
     },
     "status": {
@@ -22,8 +21,7 @@
         "active",
         "inactive"
       ],
-      "default": "active",
-      "required": true
+      "default": "active"
     },
     "latitude": {
       "type": "string",

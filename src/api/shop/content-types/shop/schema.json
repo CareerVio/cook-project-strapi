@@ -34,11 +34,6 @@
       "target": "api::product.product",
       "mappedBy": "shop"
     },
-    "users_permissions_user": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
-    },
     "image": {
       "type": "media",
       "multiple": false,
@@ -57,21 +52,19 @@
       "type": "string",
       "required": true
     },
-    "bank": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::bank.bank",
-      "inversedBy": "shops"
-    },
     "bookBankImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "bankName": {
+      "type": "string"
     }
   }
 }
