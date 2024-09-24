@@ -1,3 +1,9 @@
+- yarn strapi transfer --to https://app.dreambuilder.me/admin/   --to-token 64cadb9ed31f319c4d426a1f268a83a102b94a0c1d410bcbfc2ffba764384afca8fc0b9d7b692380d080d6472f74f88a505b50b5f1e56a81fd2afb6ba1b7d52b21f6cd440d152d0a86c65ef8a349fcc2a33cc6a70fdc895d90e8e52145d1a2208109653952dc2a149c13e4e2e5ad67d3015e3aeecc64cbbfdc5a1e3267716f1c --force
+- Transfor document https://docs.strapi.io/dev-docs/data-management/transfer
+- yarn strapi export --file my-strapi-export
+- yarn strapi import -f export_20221213105643.tar.gz.enc
+
+
 # 🚀 Getting started with Strapi
 
 Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
