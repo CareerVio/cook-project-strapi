@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "history_machines",
+  "info": {
+    "singularName": "history-machine",
+    "pluralName": "history-machines",
+    "displayName": "History Machine",
+    "description": "Records for the history machine actions"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "type": {
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "time": {
+      "type": "time"
+    },
+    "serialNumber": {
+      "type": "string",
+      "required": true
+    },
+    "point": {
+      "type": "integer",
+      "required": true
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

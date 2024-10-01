@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "history_points",
+  "info": {
+    "singularName": "history-point",
+    "pluralName": "history-points",
+    "displayName": "History Point",
+    "description": "Records the history of points for shops"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "time": {
+      "type": "time"
+    },
+    "totalPoint": {
+      "type": "integer",
+      "required": true
+    },
+    "shop": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::shop.shop"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

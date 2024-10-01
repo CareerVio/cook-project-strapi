@@ -830,6 +830,87 @@ export interface ApiBankBank extends Schema.CollectionType {
   };
 }
 
+export interface ApiHistoryMachineHistoryMachine extends Schema.CollectionType {
+  collectionName: 'history_machines';
+  info: {
+    singularName: 'history-machine';
+    pluralName: 'history-machines';
+    displayName: 'History Machine';
+    description: 'Records for the history machine actions';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    type: Attribute.String & Attribute.Required;
+    date: Attribute.Date & Attribute.Required;
+    time: Attribute.Time;
+    serialNumber: Attribute.String & Attribute.Required;
+    point: Attribute.Integer & Attribute.Required;
+    users_permissions_user: Attribute.Relation<
+      'api::history-machine.history-machine',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::history-machine.history-machine',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::history-machine.history-machine',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHistoryPointHistoryPoint extends Schema.CollectionType {
+  collectionName: 'history_points';
+  info: {
+    singularName: 'history-point';
+    pluralName: 'history-points';
+    displayName: 'History Point';
+    description: 'Records the history of points for shops';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    date: Attribute.Date & Attribute.Required;
+    time: Attribute.Time;
+    totalPoint: Attribute.Integer & Attribute.Required;
+    shop: Attribute.Relation<
+      'api::history-point.history-point',
+      'oneToOne',
+      'api::shop.shop'
+    >;
+    users_permissions_user: Attribute.Relation<
+      'api::history-point.history-point',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::history-point.history-point',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::history-point.history-point',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiInvoiceInvoice extends Schema.CollectionType {
   collectionName: 'invoices';
   info: {
@@ -1090,6 +1171,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::bank.bank': ApiBankBank;
+      'api::history-machine.history-machine': ApiHistoryMachineHistoryMachine;
+      'api::history-point.history-point': ApiHistoryPointHistoryPoint;
       'api::invoice.invoice': ApiInvoiceInvoice;
       'api::oil-machine.oil-machine': ApiOilMachineOilMachine;
       'api::product.product': ApiProductProduct;
