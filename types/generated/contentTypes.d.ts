@@ -782,7 +782,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       Attribute.DefaultTo<'Male'>;
     address: Attribute.Text;
     cardID: Attribute.String;
-    telNumber: Attribute.String;
+    telNumber: Attribute.String & Attribute.Required & Attribute.Unique;
     photoImage: Attribute.Media<'images'>;
     userType: Attribute.Enumeration<['shop', 'customer']> & Attribute.Required;
     shop: Attribute.Relation<
@@ -830,6 +830,74 @@ export interface ApiBankBank extends Schema.CollectionType {
   };
 }
 
+export interface ApiDonateDonate extends Schema.CollectionType {
+  collectionName: 'donates';
+  info: {
+    singularName: 'donate';
+    pluralName: 'donates';
+    displayName: 'donate';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    user: Attribute.Relation<
+      'api::donate.donate',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    date: Attribute.DateTime;
+    donatePoint: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::donate.donate',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::donate.donate',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiFormulaFormula extends Schema.CollectionType {
+  collectionName: 'formulas';
+  info: {
+    singularName: 'formula';
+    pluralName: 'formulas';
+    displayName: 'Formula';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    size: Attribute.String;
+    point: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::formula.formula',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::formula.formula',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiHistoryMachineHistoryMachine extends Schema.CollectionType {
   collectionName: 'history_machines';
   info: {
@@ -847,11 +915,12 @@ export interface ApiHistoryMachineHistoryMachine extends Schema.CollectionType {
     time: Attribute.Time;
     serialNumber: Attribute.String & Attribute.Required;
     point: Attribute.Integer & Attribute.Required;
-    users_permissions_user: Attribute.Relation<
+    user: Attribute.Relation<
       'api::history-machine.history-machine',
       'oneToOne',
       'plugin::users-permissions.user'
     >;
+    quantity: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -889,7 +958,7 @@ export interface ApiHistoryPointHistoryPoint extends Schema.CollectionType {
       'oneToOne',
       'api::shop.shop'
     >;
-    users_permissions_user: Attribute.Relation<
+    user: Attribute.Relation<
       'api::history-point.history-point',
       'oneToOne',
       'plugin::users-permissions.user'
@@ -999,11 +1068,13 @@ export interface ApiProductProduct extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    name: Attribute.String & Attribute.Required;
     description: Attribute.Text & Attribute.Required;
     price: Attribute.Float;
     image: Attribute.Media<'images'> & Attribute.Required;
-    approved: Attribute.Boolean & Attribute.Required;
+    approved: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
     shop: Attribute.Relation<
       'api::product.product',
       'manyToOne',
@@ -1043,11 +1114,13 @@ export interface ApiRecycleMachineRecycleMachine extends Schema.CollectionType {
   };
   attributes: {
     location: Attribute.Text & Attribute.Required;
-    status: Attribute.Enumeration<['active', 'inactive']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'active'>;
     latitude: Attribute.String & Attribute.Required;
     longitude: Attribute.String & Attribute.Required;
+    serialNumber: Attribute.String & Attribute.Required & Attribute.Unique;
+    activated: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    ownerName: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1124,9 +1197,9 @@ export interface ApiShopShop extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    name: Attribute.String & Attribute.Required;
     location: Attribute.Text & Attribute.Required;
-    latitude: Attribute.Float & Attribute.Required;
+    latitude: Attribute.Float;
     longitude: Attribute.Float;
     products: Attribute.Relation<
       'api::shop.shop',
@@ -1141,7 +1214,7 @@ export interface ApiShopShop extends Schema.CollectionType {
     >;
     bookBankNumber: Attribute.String & Attribute.Required;
     bookBankImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    bankName: Attribute.String;
+    bank: Attribute.Relation<'api::shop.shop', 'oneToOne', 'api::bank.bank'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1171,6 +1244,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::bank.bank': ApiBankBank;
+      'api::donate.donate': ApiDonateDonate;
+      'api::formula.formula': ApiFormulaFormula;
       'api::history-machine.history-machine': ApiHistoryMachineHistoryMachine;
       'api::history-point.history-point': ApiHistoryPointHistoryPoint;
       'api::invoice.invoice': ApiInvoiceInvoice;

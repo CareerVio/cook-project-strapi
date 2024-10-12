@@ -15,7 +15,7 @@
     "name": {
       "type": "string",
       "required": true,
-      "unique": true
+      "unique": false
     },
     "location": {
       "type": "text",
@@ -23,7 +23,7 @@
     },
     "latitude": {
       "type": "float",
-      "required": true
+      "required": false
     },
     "longitude": {
       "type": "float"
@@ -63,8 +63,10 @@
         "audios"
       ]
     },
-    "bankName": {
-      "type": "string"
+    "bank": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::bank.bank"
     }
   }
 }

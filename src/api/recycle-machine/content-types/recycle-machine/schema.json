@@ -16,20 +16,25 @@
       "type": "text",
       "required": true
     },
-    "status": {
-      "type": "enumeration",
-      "enum": [
-        "active",
-        "inactive"
-      ],
-      "default": "active",
-      "required": true
-    },
     "latitude": {
       "type": "string",
       "required": true
     },
     "longitude": {
+      "type": "string",
+      "required": true
+    },
+    "serialNumber": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "activated": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "ownerName": {
       "type": "string",
       "required": true
     }
