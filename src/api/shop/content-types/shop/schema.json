@@ -67,6 +67,18 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::bank.bank"
+    },
+    "invoices": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::invoice.invoice",
+      "mappedBy": "shop"
+    },
+    "redeems": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::redeem.redeem",
+      "mappedBy": "shop"
     }
   }
 }
