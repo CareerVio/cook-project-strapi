@@ -778,8 +778,8 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     lineId: Attribute.String & Attribute.Required & Attribute.Unique;
     backgroundImage: Attribute.Text;
     fullName: Attribute.String;
-    gender: Attribute.Enumeration<['Male', 'Female']> &
-      Attribute.DefaultTo<'Male'>;
+    gender: Attribute.Enumeration<['Male', 'Female', 'Null']> &
+      Attribute.DefaultTo<'Null'>;
     address: Attribute.Text;
     cardID: Attribute.String;
     telNumber: Attribute.String & Attribute.Required & Attribute.Unique;

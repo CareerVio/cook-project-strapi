@@ -88,10 +88,11 @@
       "type": "enumeration",
       "enum": [
         "Male",
-        "Female"
+        "Female",
+        "Null"
       ],
       "required": false,
-      "default": "Male"
+      "default": "Null"
     },
     "address": {
       "type": "text",

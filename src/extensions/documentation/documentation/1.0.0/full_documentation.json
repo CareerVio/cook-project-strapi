@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-10-13T00:53:06.939Z"
+    "x-generation-date": "2024-10-13T18:48:18.289Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1601,7 +1601,8 @@
                         "type": "string",
                         "enum": [
                           "Male",
-                          "Female"
+                          "Female",
+                          "Null"
                         ]
                       },
                       "address": {
@@ -4137,7 +4138,8 @@
                         "type": "string",
                         "enum": [
                           "Male",
-                          "Female"
+                          "Female",
+                          "Null"
                         ]
                       },
                       "address": {
@@ -6620,7 +6622,8 @@
                                     "type": "string",
                                     "enum": [
                                       "Male",
-                                      "Female"
+                                      "Female",
+                                      "Null"
                                     ]
                                   },
                                   "address": {
@@ -8186,7 +8189,8 @@
                                     "type": "string",
                                     "enum": [
                                       "Male",
-                                      "Female"
+                                      "Female",
+                                      "Null"
                                     ]
                                   },
                                   "address": {
@@ -11612,7 +11616,8 @@
                                     "type": "string",
                                     "enum": [
                                       "Male",
-                                      "Female"
+                                      "Female",
+                                      "Null"
                                     ]
                                   },
                                   "address": {
@@ -13768,7 +13773,8 @@
                         "type": "string",
                         "enum": [
                           "Male",
-                          "Female"
+                          "Female",
+                          "Null"
                         ]
                       },
                       "address": {
@@ -16324,7 +16330,8 @@
                                                   "type": "string",
                                                   "enum": [
                                                     "Male",
-                                                    "Female"
+                                                    "Female",
+                                                    "Null"
                                                   ]
                                                 },
                                                 "address": {
