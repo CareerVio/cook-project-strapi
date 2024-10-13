@@ -419,15 +419,15 @@
   resolved "https://registry.npmjs.org/@emotion/weak-memoize/-/weak-memoize-0.4.0.tgz"
   integrity sha512-snKqtPW01tN0ui7yu9rGv69aJXr/a/Ywvl11sUjNtEcRc+ng/mQriFL0wLXMef74iHa/EkftbDzU9F8iFbH+zg==
 
-"@esbuild/darwin-x64@0.16.17":
+"@esbuild/win32-x64@0.16.17":
   version "0.16.17"
-  resolved "https://registry.npmjs.org/@esbuild/darwin-x64/-/darwin-x64-0.16.17.tgz"
-  integrity sha512-2By45OBHulkd9Svy5IOCZt376Aa2oOkiE9QWUK9fe6Tb+WDr8hXL3dpqi+DeLiMed8tVXspzsTAvd0jUl96wmg==
+  resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.16.17.tgz"
+  integrity sha512-y+EHuSchhL7FjHgvQL/0fnnFmO4T1bhvWANX6gcnqTjtnKWbTvUMCpGnv2+t+31d7RzyEAYAd4u2fnIhHL6N/Q==
 
-"@esbuild/darwin-x64@0.19.11":
+"@esbuild/win32-x64@0.19.11":
   version "0.19.11"
-  resolved "https://registry.npmjs.org/@esbuild/darwin-x64/-/darwin-x64-0.19.11.tgz"
-  integrity sha512-fkFUiS6IUK9WYUO/+22omwetaSNl5/A8giXvQlcinLIjVkxwTLSktbF5f/kJMftM2MJp9+fXqZ5ezS7+SALp4g==
+  resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.19.11.tgz"
+  integrity sha512-vfkhltrjCAb603XaFhqhAF4LGDi2M4OrCRrFusyQ+iTLQ/o60QQXxc9cZC/FFpihBI9N1Grn6SMKVJ4KP7Fuiw==
 
 "@floating-ui/core@^1.6.0":
   version "1.6.7"
@@ -1143,10 +1143,10 @@
     redux-thunk "^2.4.2"
     reselect "^4.1.8"
 
-"@rollup/rollup-darwin-x64@4.20.0":
+"@rollup/rollup-win32-x64-msvc@4.20.0":
   version "4.20.0"
-  resolved "https://registry.npmjs.org/@rollup/rollup-darwin-x64/-/rollup-darwin-x64-4.20.0.tgz"
-  integrity sha512-xbrMDdlev53vNXexEa6l0LffojxhqDTBeL+VUxuuIXys4x6xyvbKq5XqTXBCEUA8ty8iEJblHvFaWRJTk/icAQ==
+  resolved "https://registry.npmjs.org/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.20.0.tgz"
+  integrity sha512-aJ1EJSuTdGnM6qbVC4B5DSmozPTqIag9fSzXRNNo+humQLG89XpPgdt16Ia56ORD7s+H8Pmyx44uczDQ0yDzpg==
 
 "@rushstack/node-core-library@5.6.0":
   version "5.6.0"
@@ -1928,10 +1928,10 @@
     p-map "4.0.0"
     yup "0.32.9"
 
-"@swc/core-darwin-x64@1.7.10":
+"@swc/core-win32-x64-msvc@1.7.10":
   version "1.7.10"
-  resolved "https://registry.npmjs.org/@swc/core-darwin-x64/-/core-darwin-x64-1.7.10.tgz"
-  integrity sha512-P3LJjAWh5yLc6p5IUwV5LgRfA3R1oDCZDMabYyb2BVQuJTD4MfegW9DhBcUUF5dhBLwq3191KpLVzE+dLTbiXw==
+  resolved "https://registry.npmjs.org/@swc/core-win32-x64-msvc/-/core-win32-x64-msvc-1.7.10.tgz"
+  integrity sha512-uXIF8GuSappe1imm6Lf7pHGepfCBjDQlS+qTqvEGE0wZAsL1IVATK9P/cH/OCLfJXeQDTLeSYmrpwjtXNt46tQ==
 
 "@swc/core@^1.3.96":
   version "1.7.10"
@@ -4742,11 +4742,6 @@ fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
   integrity sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==
-
-fsevents@*, fsevents@~2.3.2, fsevents@~2.3.3:
-  version "2.3.3"
-  resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz"
-  integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
 
 function-bind@^1.1.2:
   version "1.1.2"
