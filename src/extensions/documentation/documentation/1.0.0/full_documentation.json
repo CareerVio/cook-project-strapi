@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-10-12T05:07:56.871Z"
+    "x-generation-date": "2024-10-13T00:53:06.939Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1066,9 +1066,6 @@
                                         "rejected"
                                       ]
                                     },
-                                    "productJsonArray": {
-                                      "type": "string"
-                                    },
                                     "invoice": {
                                       "type": "object",
                                       "properties": {
@@ -1537,6 +1534,7 @@
                                         }
                                       }
                                     },
+                                    "productJsonArray": {},
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -2451,6 +2449,9 @@
                       },
                       "point": {
                         "type": "integer"
+                      },
+                      "lineUserId": {
+                        "type": "string"
                       },
                       "createdAt": {
                         "type": "string",
@@ -3601,9 +3602,6 @@
                                         "rejected"
                                       ]
                                     },
-                                    "productJsonArray": {
-                                      "type": "string"
-                                    },
                                     "invoice": {
                                       "type": "object",
                                       "properties": {
@@ -4072,6 +4070,7 @@
                                         }
                                       }
                                     },
+                                    "productJsonArray": {},
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -4986,6 +4985,9 @@
                       },
                       "point": {
                         "type": "integer"
+                      },
+                      "lineUserId": {
+                        "type": "string"
                       },
                       "createdAt": {
                         "type": "string",
@@ -6314,9 +6316,6 @@
                                                     "rejected"
                                                   ]
                                                 },
-                                                "productJsonArray": {
-                                                  "type": "string"
-                                                },
                                                 "invoice": {
                                                   "type": "object",
                                                   "properties": {
@@ -6554,6 +6553,7 @@
                                                     }
                                                   }
                                                 },
+                                                "productJsonArray": {},
                                                 "createdAt": {
                                                   "type": "string",
                                                   "format": "date-time"
@@ -6797,6 +6797,9 @@
                                   },
                                   "point": {
                                     "type": "integer"
+                                  },
+                                  "lineUserId": {
+                                    "type": "string"
                                   },
                                   "createdAt": {
                                     "type": "string",
@@ -9032,6 +9035,9 @@
                                   "point": {
                                     "type": "integer"
                                   },
+                                  "lineUserId": {
+                                    "type": "string"
+                                  },
                                   "createdAt": {
                                     "type": "string",
                                     "format": "date-time"
@@ -9094,9 +9100,6 @@
                           "approved",
                           "rejected"
                         ]
-                      },
-                      "productJsonArray": {
-                        "type": "string"
                       },
                       "invoice": {
                         "type": "object",
@@ -9335,6 +9338,7 @@
                           }
                         }
                       },
+                      "productJsonArray": {},
                       "createdAt": {
                         "type": "string",
                         "format": "date-time"
@@ -11304,9 +11308,6 @@
                                                     "rejected"
                                                   ]
                                                 },
-                                                "productJsonArray": {
-                                                  "type": "string"
-                                                },
                                                 "invoice": {
                                                   "type": "object",
                                                   "properties": {
@@ -11544,6 +11545,7 @@
                                                     }
                                                   }
                                                 },
+                                                "productJsonArray": {},
                                                 "createdAt": {
                                                   "type": "string",
                                                   "format": "date-time"
@@ -11787,6 +11789,9 @@
                                   },
                                   "point": {
                                     "type": "integer"
+                                  },
+                                  "lineUserId": {
+                                    "type": "string"
                                   },
                                   "createdAt": {
                                     "type": "string",
@@ -12622,7 +12627,8 @@
             "required": [
               "totalPoints",
               "qrCode",
-              "status"
+              "status",
+              "productJsonArray"
             ],
             "type": "object",
             "properties": {
@@ -12652,9 +12658,6 @@
                   "rejected"
                 ]
               },
-              "productJsonArray": {
-                "type": "string"
-              },
               "invoice": {
                 "oneOf": [
                   {
@@ -12665,7 +12668,8 @@
                   }
                 ],
                 "example": "string or id"
-              }
+              },
+              "productJsonArray": {}
             }
           }
         }
@@ -12721,7 +12725,8 @@
         "required": [
           "totalPoints",
           "qrCode",
-          "status"
+          "status",
+          "productJsonArray"
         ],
         "properties": {
           "customer": {
@@ -13228,9 +13233,6 @@
                                         "rejected"
                                       ]
                                     },
-                                    "productJsonArray": {
-                                      "type": "string"
-                                    },
                                     "invoice": {
                                       "type": "object",
                                       "properties": {
@@ -13699,6 +13701,7 @@
                                         }
                                       }
                                     },
+                                    "productJsonArray": {},
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -14614,6 +14617,9 @@
                       "point": {
                         "type": "integer"
                       },
+                      "lineUserId": {
+                        "type": "string"
+                      },
                       "createdAt": {
                         "type": "string",
                         "format": "date-time"
@@ -14677,9 +14683,6 @@
               "rejected"
             ]
           },
-          "productJsonArray": {
-            "type": "string"
-          },
           "invoice": {
             "type": "object",
             "properties": {
@@ -14697,6 +14700,7 @@
               }
             }
           },
+          "productJsonArray": {},
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -16016,9 +16020,6 @@
                                                                   "rejected"
                                                                 ]
                                                               },
-                                                              "productJsonArray": {
-                                                                "type": "string"
-                                                              },
                                                               "invoice": {
                                                                 "type": "object",
                                                                 "properties": {
@@ -16256,6 +16257,7 @@
                                                                   }
                                                                 }
                                                               },
+                                                              "productJsonArray": {},
                                                               "createdAt": {
                                                                 "type": "string",
                                                                 "format": "date-time"
@@ -16499,6 +16501,9 @@
                                                 },
                                                 "point": {
                                                   "type": "integer"
+                                                },
+                                                "lineUserId": {
+                                                  "type": "string"
                                                 },
                                                 "createdAt": {
                                                   "type": "string",

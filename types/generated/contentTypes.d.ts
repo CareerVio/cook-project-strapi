@@ -775,7 +775,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::redeem.redeem'
     >;
-    lineId: Attribute.String & Attribute.Required;
+    lineId: Attribute.String & Attribute.Required & Attribute.Unique;
     backgroundImage: Attribute.Text;
     fullName: Attribute.String;
     gender: Attribute.Enumeration<['Male', 'Female']> &
@@ -791,6 +791,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'api::shop.shop'
     >;
     point: Attribute.Integer;
+    lineUserId: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1161,12 +1162,12 @@ export interface ApiRedeemRedeem extends Schema.CollectionType {
     status: Attribute.Enumeration<['pending', 'approved', 'rejected']> &
       Attribute.Required &
       Attribute.DefaultTo<'pending'>;
-    productJsonArray: Attribute.Text;
     invoice: Attribute.Relation<
       'api::redeem.redeem',
       'oneToOne',
       'api::invoice.invoice'
     >;
+    productJsonArray: Attribute.JSON & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

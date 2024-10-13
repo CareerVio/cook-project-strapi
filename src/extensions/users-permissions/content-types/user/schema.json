@@ -73,7 +73,8 @@
     },
     "lineId": {
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": true
     },
     "backgroundImage": {
       "type": "text",
@@ -130,6 +131,9 @@
     "point": {
       "type": "integer",
       "required": false
+    },
+    "lineUserId": {
+      "type": "text"
     }
   }
 }

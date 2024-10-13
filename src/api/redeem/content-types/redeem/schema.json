@@ -37,14 +37,15 @@
       "required": true,
       "default": "pending"
     },
-    "productJsonArray": {
-      "type": "text"
-    },
     "invoice": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::invoice.invoice",
       "mappedBy": "redeem"
+    },
+    "productJsonArray": {
+      "type": "json",
+      "required": true
     }
   }
 }
