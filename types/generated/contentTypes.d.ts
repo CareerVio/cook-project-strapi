@@ -937,6 +937,11 @@ export interface ApiInvoiceInvoice extends Schema.CollectionType {
     >;
     productJsonArray: Attribute.Text;
     invoiceNumber: Attribute.String;
+    shop: Attribute.Relation<
+      'api::invoice.invoice',
+      'manyToOne',
+      'api::shop.shop'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1100,6 +1105,11 @@ export interface ApiRedeemRedeem extends Schema.CollectionType {
       'api::invoice.invoice'
     >;
     productJsonArray: Attribute.JSON & Attribute.Required;
+    shop: Attribute.Relation<
+      'api::redeem.redeem',
+      'manyToOne',
+      'api::shop.shop'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1148,6 +1158,16 @@ export interface ApiShopShop extends Schema.CollectionType {
     bookBankNumber: Attribute.String & Attribute.Required;
     bookBankImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     bank: Attribute.Relation<'api::shop.shop', 'oneToOne', 'api::bank.bank'>;
+    invoices: Attribute.Relation<
+      'api::shop.shop',
+      'oneToMany',
+      'api::invoice.invoice'
+    >;
+    redeems: Attribute.Relation<
+      'api::shop.shop',
+      'oneToMany',
+      'api::redeem.redeem'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

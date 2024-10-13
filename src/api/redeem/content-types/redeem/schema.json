@@ -46,6 +46,12 @@
     "productJsonArray": {
       "type": "json",
       "required": true
+    },
+    "shop": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::shop.shop",
+      "inversedBy": "redeems"
     }
   }
 }

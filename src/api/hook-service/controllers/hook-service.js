@@ -39,9 +39,25 @@ module.exports = {
           const result = await strapi.service('api::hook-service.sms-service').sendMessage(lineId, message);
 
 
+      }else if (body.event === "entry.update" && body.model === "invoice" && body.entry.status === "paid") {
+        const entry = body.entry;
+        const invoice = await strapi.entityService.findOne('api::invoice.invoice',
+          body.entry.id,
+          {
+            populate: [
+              "shop", "shop.user"
+            ],
+          });
+          console.log("invoice");
+          console.log(invoice);
+          let lineId = invoice.shop.user.lineId;
+          let message = `Invoice Id = ${body.entry.id} ได้รับการชำระเงินแล้ว`;
+          const result = await strapi.service('api::hook-service.sms-service').sendMessage(lineId, message);
+
       }
       ctx.body = "OKKKK";
     } catch (err) {
+      console.log(err);
       ctx.body = err;
     }
   }
