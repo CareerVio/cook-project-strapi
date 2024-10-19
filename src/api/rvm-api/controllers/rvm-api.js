@@ -4,17 +4,17 @@ module.exports = {
     // 1. getProfile Enpoint to get user profile by phone number
     async getProfile(ctx) {
         try {
-            // Extract phoneNumber from the request body
-            const { phoneNumber } = ctx.request.body;
+            // Extract telNumber from the request body
+            const { telNumber } = ctx.request.body;
       
             // Validate that the phone number is provided
-            if (!phoneNumber) {
+            if (!telNumber) {
               return ctx.badRequest('Phone number is required.');
             }
       
             // Call a service to get the user profile (this can be a database query)
             const userProfile = await strapi.entityService.findMany('plugin::users-permissions.user', {
-                filters: { phoneNumber: phoneNumber },
+                filters: { telNumber },
                 limit: 1,  // Ensure only one user is returned
                 fields: ['username', 'fullName', 'point'],  // Specify fields you want
             });
@@ -107,9 +107,9 @@ module.exports = {
                 fields: ['size', 'point'],  // Fetch only size and point fields
             });
 
-            // If no formula data is found, return an internal server error
-            if (!formula_data || formula_data.length === 0) {
-                return ctx.internalServerError({ error: "Internal server error" });
+            // If no formula data is found, return a server error
+            if (!formula_data) {
+                return ctx.internalServerError("Internal server error");
             }
 
             // Create a dictionary mapping can size to points
@@ -154,10 +154,10 @@ module.exports = {
     async accumulatePoints(ctx) {
         try {
             // Get data from request body
-            const { phoneNumber, serialNumber, earnedPoints, data } = ctx.request.body;
+            const { telNumber, serialNumber, earnedPoints, data } = ctx.request.body;
     
             // Validate input data
-            if (!phoneNumber || typeof phoneNumber !== 'string' ||
+            if (!telNumber || typeof telNumber !== 'string' ||
                 !serialNumber || typeof serialNumber !== 'string' ||
                 !earnedPoints || typeof earnedPoints !== 'number' ||
                 !Array.isArray(data)) {
@@ -166,7 +166,7 @@ module.exports = {
     
             // Search for the user by phone number in the database
             const user = await strapi.entityService.findMany('plugin::users-permissions.user', {
-                filters: { phoneNumber: phoneNumber },
+                filters: { telNumber: telNumber },
                 limit: 1,
             });
     
@@ -219,7 +219,7 @@ module.exports = {
                         cabinet: rvm[0].id,   // Assuming the recycling machine is stored in a "cabinet" field
                         size: size,
                         quantity: quantity,
-                        phoneNumber: phoneNumber,
+                        telNumber: telNumber,
                         contribrute: contribrute,
                     },
                 });
@@ -241,10 +241,10 @@ module.exports = {
     async donate(ctx) {
         try {
             // Get data from request body
-            const { phoneNumber, serialNumber, earnedPoints, data } = ctx.request.body;
+            const { telNumber, serialNumber, earnedPoints, data } = ctx.request.body;
     
             // Validate input data
-            if (!phoneNumber || typeof phoneNumber !== 'string' ||
+            if (!telNumber || typeof telNumber !== 'string' ||
                 !serialNumber || typeof serialNumber !== 'string' ||
                 !earnedPoints || typeof earnedPoints !== 'number' ||
                 !Array.isArray(data)) {
@@ -253,7 +253,7 @@ module.exports = {
     
             // Search for the user by phone number in the database
             const user = await strapi.entityService.findMany('plugin::users-permissions.user', {
-                filters: { phoneNumber: phoneNumber },
+                filters: { telNumber },
                 limit: 1,
             });
     
@@ -264,7 +264,7 @@ module.exports = {
     
             // Check if the recycling machine exists using the serial number
             const rvm = await strapi.entityService.findMany('api::recycle-machine.recycle-machine', {
-                filters: { serialNumber: serialNumber },
+                filters: { serialNumber },
                 limit: 1,
             });
     
@@ -304,17 +304,17 @@ module.exports = {
                         time: depositTime,
                         user: user[0].id,
                         cabinet: rvm[0].id,   // Assuming the recycling machine is stored in a "cabinet" field
-                        size: size,
-                        quantity: quantity,
-                        phoneNumber: phoneNumber,
-                        contribrute: contribrute,
+                        size,
+                        quantity,
+                        telNumber,
+                        contribrute,
                     },
                 });
             }
     
             // Prepare the data to be saved
             const donationData = {
-                phoneNumber: phoneNumber,
+                telNumber: telNumber,
                 // You can add more fields related to the donation here, if needed
             };
         
@@ -346,7 +346,7 @@ module.exports = {
         
             // Fetch machine data based on serial number
             const machines = await strapi.entityService.findMany('api::recycle-machine.recycle-machine', {
-                filters: { serialNumber: serialNumber },
+                filters: { serialNumber },
                 limit: 1,  // We expect a unique serial number, so limit to one result
             });
         
