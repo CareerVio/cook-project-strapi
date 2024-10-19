@@ -1,6 +1,6 @@
-const { createCoreController } = require('@strapi/strapi').factories;
+'use strict';
 
-module.exports = createCoreController('api::rvm-api.rvm-api', ({ strapi }) =>  ({
+module.exports = {
     // 1. getProfile Enpoint to get user profile by phone number
     async getProfile(ctx) {
         try {
@@ -424,4 +424,4 @@ module.exports = createCoreController('api::rvm-api.rvm-api', ({ strapi }) =>  (
             return ctx.internalServerError({ error: "Internal server error" });
         }
     },
-}));
+};
