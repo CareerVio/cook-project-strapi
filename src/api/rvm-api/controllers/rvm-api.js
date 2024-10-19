@@ -241,12 +241,12 @@ module.exports = {
     async donate(ctx) {
         try {
             // Get data from request body
-            const { telNumber, serialNumber, earnedPoints, data } = ctx.request.body;
+            const { telNumber, serialNumber, donatePoints, data } = ctx.request.body;
     
             // Validate input data
             if (!telNumber || typeof telNumber !== 'string' ||
                 !serialNumber || typeof serialNumber !== 'string' ||
-                !earnedPoints || typeof earnedPoints !== 'number' ||
+                !donatePoints || typeof donatePoints !== 'number' ||
                 !Array.isArray(data)) {
                 return ctx.badRequest({ error: "Invalid input" });
             }
@@ -273,17 +273,6 @@ module.exports = {
                 return ctx.notFound({ error: "Recycling machine not found" });
             }
     
-            // Accumulate the earned points for the user
-            const currentTotalPoints = user[0].point || 0; // Get existing points or 0
-            const newTotalPoints = currentTotalPoints + earnedPoints;
-    
-            // Update the user's total points in the database
-            await strapi.entityService.update('plugin::users-permissions.user', user[0].id, {
-                data: {
-                    point: newTotalPoints
-                },
-            });
-    
             // Get the current date and time
             const currentDate = new Date();
             const depositDate = currentDate.toISOString().split('T')[0];  // Format: YYYY-MM-DD
@@ -299,7 +288,7 @@ module.exports = {
                 await strapi.entityService.create('api::history-machine.history-machine', {
                     data: {
                         serialNumber: serialNumber,
-                        point: earnedPoints,   // Points for this transaction
+                        point: donatePoints,   // Points for this transaction
                         date: depositDate,
                         time: depositTime,
                         user: user[0].id,
