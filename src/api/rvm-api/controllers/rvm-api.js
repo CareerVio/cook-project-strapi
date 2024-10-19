@@ -334,7 +334,7 @@ module.exports = {
             return ctx.internalServerError({ error: "Internal server error" });
         }
     },
-    // 8. Get donation data by phone number
+    // 8. Get activate data by phone number
     async activate(ctx) {
         try {
             const { serialNumber } = ctx.request.body;
@@ -370,7 +370,7 @@ module.exports = {
             const machineId = machine.id;
         
             // Update the machine's activated status in Strapi
-            await strapi.entityService.update('api::rvm.rvm', machineId, {
+            await strapi.entityService.update('api::recycle-machine.recycle-machine', machineId, {
                 data: { activated: true },
             });
         
