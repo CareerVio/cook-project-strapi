@@ -201,7 +201,7 @@ module.exports = {
             const currentDate = new Date();
             const depositDate = currentDate.toISOString().split('T')[0];  // Format: YYYY-MM-DD
             const depositTime = currentDate.toTimeString().split(' ')[0];  // Format: HH:MM:SS
-            const contribrute = "accumulate";
+            const contribute = "accumulate";
     
             // Loop through the data (cans) and save each record to the history-machine
             for (const item of data) {
@@ -217,10 +217,10 @@ module.exports = {
                         time: depositTime,
                         user: user[0].id,
                         cabinet: rvm[0].id,   // Assuming the recycling machine is stored in a "cabinet" field
-                        size: size,
-                        quantity: quantity,
-                        telNumber: telNumber,
-                        contribrute: contribrute,
+                        size,
+                        quantity,
+                        telNumber,
+                        contribute,
                     },
                 });
             }
@@ -288,7 +288,7 @@ module.exports = {
             const currentDate = new Date();
             const depositDate = currentDate.toISOString().split('T')[0];  // Format: YYYY-MM-DD
             const depositTime = currentDate.toTimeString().split(' ')[0];  // Format: HH:MM:SS
-            const contribrute = "accumulate";
+            const contribute = "accumulate";
     
             // Loop through the data (cans) and save each record to the history-machine
             for (const item of data) {
@@ -307,7 +307,7 @@ module.exports = {
                         size,
                         quantity,
                         telNumber,
-                        contribrute,
+                        contribute,
                     },
                 });
             }
