@@ -4,12 +4,13 @@
   "info": {
     "singularName": "history-machine",
     "pluralName": "history-machines",
-    "displayName": "History Machine",
+    "displayName": "Transaction",
     "description": "Records for the history machine actions"
   },
   "options": {
     "draftAndPublish": false
   },
+  "pluginOptions": {},
   "attributes": {
     "type": {
       "type": "string",
@@ -36,6 +37,20 @@
       "target": "plugin::users-permissions.user"
     },
     "quantity": {
+      "type": "integer"
+    },
+    "cabinet": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::recycle-machine.recycle-machine"
+    },
+    "detail": {
+      "type": "text"
+    },
+    "status": {
+      "type": "string"
+    },
+    "point_earned": {
       "type": "integer"
     }
   }

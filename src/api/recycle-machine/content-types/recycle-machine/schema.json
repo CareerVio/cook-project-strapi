@@ -4,7 +4,7 @@
   "info": {
     "singularName": "recycle-machine",
     "pluralName": "recycle-machines",
-    "displayName": "Recycle Machine",
+    "displayName": "Cabinet",
     "description": ""
   },
   "options": {
@@ -37,6 +37,32 @@
     "ownerName": {
       "type": "string",
       "required": true
+    },
+    "version": {
+      "type": "string"
+    },
+    "installationOn": {
+      "type": "datetime"
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user"
+    },
+    "cabinet_status": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::cabinet-status.cabinet-status"
+    },
+    "installation_location": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::installation-location.installation-location"
+    },
+    "delivery_location": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::delivery-location.delivery-location"
     }
   }
 }

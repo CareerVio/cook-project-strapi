@@ -147,6 +147,12 @@
         "videos",
         "audios"
       ]
+    },
+    "taxId": {
+      "type": "string"
+    },
+    "companyName": {
+      "type": "string"
     }
   }
 }

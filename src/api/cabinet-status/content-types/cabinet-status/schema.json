@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cabinet_statuses",
+  "info": {
+    "singularName": "cabinet-status",
+    "pluralName": "cabinet-statuses",
+    "displayName": "Cabinet Status"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

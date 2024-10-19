@@ -805,6 +805,8 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     point: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<50>;
     cardIdImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
       Attribute.Required;
+    taxId: Attribute.String;
+    companyName: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -844,12 +846,76 @@ export interface ApiBankBank extends Schema.CollectionType {
   };
 }
 
+export interface ApiCabinetStatusCabinetStatus extends Schema.CollectionType {
+  collectionName: 'cabinet_statuses';
+  info: {
+    singularName: 'cabinet-status';
+    pluralName: 'cabinet-statuses';
+    displayName: 'Cabinet Status';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::cabinet-status.cabinet-status',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::cabinet-status.cabinet-status',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDeliveryLocationDeliveryLocation
+  extends Schema.CollectionType {
+  collectionName: 'delivery_locations';
+  info: {
+    singularName: 'delivery-location';
+    pluralName: 'delivery-locations';
+    displayName: 'Delivery Location';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    address: Attribute.Text;
+    recipient_name: Attribute.String;
+    recipient_contact: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::delivery-location.delivery-location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::delivery-location.delivery-location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDonateDonate extends Schema.CollectionType {
   collectionName: 'donates';
   info: {
     singularName: 'donate';
     pluralName: 'donates';
-    displayName: 'donate';
+    displayName: 'Donate';
     description: '';
   };
   options: {
@@ -874,6 +940,39 @@ export interface ApiDonateDonate extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::donate.donate',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDonationOrganizationDonationOrganization
+  extends Schema.CollectionType {
+  collectionName: 'donation_organizations';
+  info: {
+    singularName: 'donation-organization';
+    pluralName: 'donation-organizations';
+    displayName: 'Donation Organization';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    organization_name: Attribute.String;
+    description: Attribute.Text;
+    contact_info: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::donation-organization.donation-organization',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::donation-organization.donation-organization',
       'oneToOne',
       'admin::user'
     > &
@@ -917,7 +1016,7 @@ export interface ApiHistoryMachineHistoryMachine extends Schema.CollectionType {
   info: {
     singularName: 'history-machine';
     pluralName: 'history-machines';
-    displayName: 'History Machine';
+    displayName: 'Transaction';
     description: 'Records for the history machine actions';
   };
   options: {
@@ -935,6 +1034,14 @@ export interface ApiHistoryMachineHistoryMachine extends Schema.CollectionType {
       'plugin::users-permissions.user'
     >;
     quantity: Attribute.Integer;
+    cabinet: Attribute.Relation<
+      'api::history-machine.history-machine',
+      'oneToOne',
+      'api::recycle-machine.recycle-machine'
+    >;
+    detail: Attribute.Text;
+    status: Attribute.String;
+    point_earned: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -994,6 +1101,40 @@ export interface ApiHistoryPointHistoryPoint extends Schema.CollectionType {
   };
 }
 
+export interface ApiInstallationLocationInstallationLocation
+  extends Schema.CollectionType {
+  collectionName: 'installation_locations';
+  info: {
+    singularName: 'installation-location';
+    pluralName: 'installation-locations';
+    displayName: 'Installation Location';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    address: Attribute.Text;
+    building: Attribute.String;
+    floor: Attribute.String;
+    room: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::installation-location.installation-location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::installation-location.installation-location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiInvoiceInvoice extends Schema.CollectionType {
   collectionName: 'invoices';
   info: {
@@ -1034,6 +1175,44 @@ export interface ApiInvoiceInvoice extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::invoice.invoice',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMaintenanceMaintenance extends Schema.CollectionType {
+  collectionName: 'maintenances';
+  info: {
+    singularName: 'maintenance';
+    pluralName: 'maintenances';
+    displayName: 'Maintenance';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    technician_name: Attribute.String;
+    description: Attribute.Text;
+    status: Attribute.String;
+    maintenanceDate: Attribute.Date;
+    cabinet: Attribute.Relation<
+      'api::maintenance.maintenance',
+      'oneToOne',
+      'api::recycle-machine.recycle-machine'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::maintenance.maintenance',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::maintenance.maintenance',
       'oneToOne',
       'admin::user'
     > &
@@ -1125,7 +1304,7 @@ export interface ApiRecycleMachineRecycleMachine extends Schema.CollectionType {
   info: {
     singularName: 'recycle-machine';
     pluralName: 'recycle-machines';
-    displayName: 'Recycle Machine';
+    displayName: 'Cabinet';
     description: '';
   };
   options: {
@@ -1140,6 +1319,28 @@ export interface ApiRecycleMachineRecycleMachine extends Schema.CollectionType {
       Attribute.Required &
       Attribute.DefaultTo<false>;
     ownerName: Attribute.String & Attribute.Required;
+    version: Attribute.String;
+    installationOn: Attribute.DateTime;
+    owner: Attribute.Relation<
+      'api::recycle-machine.recycle-machine',
+      'oneToOne',
+      'admin::user'
+    >;
+    cabinet_status: Attribute.Relation<
+      'api::recycle-machine.recycle-machine',
+      'oneToOne',
+      'api::cabinet-status.cabinet-status'
+    >;
+    installation_location: Attribute.Relation<
+      'api::recycle-machine.recycle-machine',
+      'oneToOne',
+      'api::installation-location.installation-location'
+    >;
+    delivery_location: Attribute.Relation<
+      'api::recycle-machine.recycle-machine',
+      'oneToOne',
+      'api::delivery-location.delivery-location'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1280,11 +1481,16 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::bank.bank': ApiBankBank;
+      'api::cabinet-status.cabinet-status': ApiCabinetStatusCabinetStatus;
+      'api::delivery-location.delivery-location': ApiDeliveryLocationDeliveryLocation;
       'api::donate.donate': ApiDonateDonate;
+      'api::donation-organization.donation-organization': ApiDonationOrganizationDonationOrganization;
       'api::formula.formula': ApiFormulaFormula;
       'api::history-machine.history-machine': ApiHistoryMachineHistoryMachine;
       'api::history-point.history-point': ApiHistoryPointHistoryPoint;
+      'api::installation-location.installation-location': ApiInstallationLocationInstallationLocation;
       'api::invoice.invoice': ApiInvoiceInvoice;
+      'api::maintenance.maintenance': ApiMaintenanceMaintenance;
       'api::oil-machine.oil-machine': ApiOilMachineOilMachine;
       'api::product.product': ApiProductProduct;
       'api::recycle-machine.recycle-machine': ApiRecycleMachineRecycleMachine;
