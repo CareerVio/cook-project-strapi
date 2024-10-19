@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "formulas",
+  "info": {
+    "singularName": "formula",
+    "pluralName": "formulas",
+    "displayName": "Formula"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "size": {
+      "type": "string"
+    },
+    "point": {
+      "type": "integer"
+    }
+  }
+}

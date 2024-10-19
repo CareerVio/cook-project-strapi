@@ -776,13 +776,25 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'api::redeem.redeem'
     >;
     lineId: Attribute.String & Attribute.Required & Attribute.Unique;
-    backgroundImage: Attribute.Text;
     fullName: Attribute.String;
     gender: Attribute.Enumeration<['Male', 'Female', 'Null']> &
+      Attribute.Required &
       Attribute.DefaultTo<'Null'>;
     address: Attribute.Text;
-    cardID: Attribute.String;
-    telNumber: Attribute.String & Attribute.Required & Attribute.Unique;
+    cardID: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 13;
+        maxLength: 13;
+      }>;
+    telNumber: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 10;
+        maxLength: 10;
+      }>;
     photoImage: Attribute.Media<'images'>;
     userType: Attribute.Enumeration<['shop', 'customer']> & Attribute.Required;
     shop: Attribute.Relation<
@@ -790,7 +802,9 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToOne',
       'api::shop.shop'
     >;
-    point: Attribute.Integer;
+    point: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<50>;
+    cardIdImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1177,6 +1191,8 @@ export interface ApiRedeemRedeem extends Schema.CollectionType {
       'manyToOne',
       'api::shop.shop'
     >;
+    date: Attribute.Date & Attribute.Required;
+    time: Attribute.Time & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

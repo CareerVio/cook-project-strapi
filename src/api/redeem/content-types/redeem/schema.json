@@ -52,6 +52,14 @@
       "relation": "manyToOne",
       "target": "api::shop.shop",
       "inversedBy": "redeems"
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "time": {
+      "type": "time",
+      "required": true
     }
   }
 }

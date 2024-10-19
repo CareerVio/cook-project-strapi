@@ -76,10 +76,6 @@
       "required": true,
       "unique": true
     },
-    "backgroundImage": {
-      "type": "text",
-      "required": false
-    },
     "fullName": {
       "type": "string",
       "required": false
@@ -91,7 +87,7 @@
         "Female",
         "Null"
       ],
-      "required": false,
+      "required": true,
       "default": "Null"
     },
     "address": {
@@ -100,12 +96,19 @@
     },
     "cardID": {
       "type": "string",
-      "required": false
+      "required": true,
+      "unique": true,
+      "minLength": 13,
+      "maxLength": 13,
+      "regex": "^[1-9]\\d{12}$"
     },
     "telNumber": {
       "type": "string",
       "required": true,
-      "unique": true
+      "unique": true,
+      "minLength": 10,
+      "maxLength": 10,
+      "regex": "^0\\d{9}$"
     },
     "photoImage": {
       "type": "media",
@@ -131,7 +134,19 @@
     },
     "point": {
       "type": "integer",
-      "required": false
+      "required": true,
+      "default": 50
+    },
+    "cardIdImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }
