@@ -277,7 +277,7 @@ module.exports = {
             const currentDate = new Date();
             const depositDate = currentDate.toISOString().split('T')[0];  // Format: YYYY-MM-DD
             const depositTime = currentDate.toTimeString().split(' ')[0];  // Format: HH:MM:SS
-            const contribute = "accumulate";
+            const contribute = "donate";
     
             // Loop through the data (cans) and save each record to the history-machine
             for (const item of data) {
