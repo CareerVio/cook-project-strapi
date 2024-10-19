@@ -361,9 +361,7 @@ module.exports = {
         
             // Check if the machine is already activated
             if (activated) {
-                return ctx.badRequest({
-                    error: 'The machine has already been activated. Duplicate activation is not allowed.'
-                });
+                return ctx.badRequest('The machine has already been activated. Duplicate activation is not allowed.');
             }
         
             // If not activated, update the machine's activated status to true
@@ -377,7 +375,7 @@ module.exports = {
             // Send success response
             return ctx.send({
                 serialNumber: serialNumber,
-                status: 'The machine is activated now',
+                status: 'activated',
             }, 200);
         
         } catch (error) {
