@@ -1023,7 +1023,7 @@ export interface ApiHistoryMachineHistoryMachine extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    type: Attribute.String & Attribute.Required;
+    type: Attribute.String;
     date: Attribute.Date & Attribute.Required;
     time: Attribute.Time;
     serialNumber: Attribute.String & Attribute.Required;
@@ -1033,7 +1033,7 @@ export interface ApiHistoryMachineHistoryMachine extends Schema.CollectionType {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
-    quantity: Attribute.Integer;
+    quantity: Attribute.Integer & Attribute.DefaultTo<0>;
     cabinet: Attribute.Relation<
       'api::history-machine.history-machine',
       'oneToOne',
@@ -1041,7 +1041,13 @@ export interface ApiHistoryMachineHistoryMachine extends Schema.CollectionType {
     >;
     detail: Attribute.Text;
     status: Attribute.String;
-    point_earned: Attribute.Integer;
+    weight: Attribute.Decimal;
+    isValidBottle: Attribute.Boolean;
+    brand: Attribute.String;
+    size: Attribute.String;
+    confidence: Attribute.Decimal;
+    telNumber: Attribute.String & Attribute.Required;
+    contribute: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1254,6 +1260,44 @@ export interface ApiOilMachineOilMachine extends Schema.CollectionType {
   };
 }
 
+export interface ApiOwnerOwner extends Schema.CollectionType {
+  collectionName: 'owners';
+  info: {
+    singularName: 'owner';
+    pluralName: 'owners';
+    displayName: 'Owner';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    idCardNumber: Attribute.String;
+    companyName: Attribute.String;
+    taxId: Attribute.String;
+    address: Attribute.Text;
+    contactNumber: Attribute.String;
+    email: Attribute.Email;
+    owner: Attribute.Relation<'api::owner.owner', 'oneToOne', 'admin::user'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::owner.owner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::owner.owner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiProductProduct extends Schema.CollectionType {
   collectionName: 'products';
   info: {
@@ -1308,7 +1352,7 @@ export interface ApiRecycleMachineRecycleMachine extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     location: Attribute.Text & Attribute.Required;
@@ -1318,7 +1362,7 @@ export interface ApiRecycleMachineRecycleMachine extends Schema.CollectionType {
     activated: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<false>;
-    ownerName: Attribute.String & Attribute.Required;
+    ownerName: Attribute.String;
     version: Attribute.String;
     installationOn: Attribute.DateTime;
     owner: Attribute.Relation<
@@ -1343,7 +1387,6 @@ export interface ApiRecycleMachineRecycleMachine extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::recycle-machine.recycle-machine',
       'oneToOne',
@@ -1492,6 +1535,7 @@ declare module '@strapi/types' {
       'api::invoice.invoice': ApiInvoiceInvoice;
       'api::maintenance.maintenance': ApiMaintenanceMaintenance;
       'api::oil-machine.oil-machine': ApiOilMachineOilMachine;
+      'api::owner.owner': ApiOwnerOwner;
       'api::product.product': ApiProductProduct;
       'api::recycle-machine.recycle-machine': ApiRecycleMachineRecycleMachine;
       'api::redeem.redeem': ApiRedeemRedeem;
