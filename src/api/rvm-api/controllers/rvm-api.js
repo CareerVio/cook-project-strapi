@@ -253,7 +253,7 @@ module.exports = {
     
             // Search for the user by phone number in the database
             const user = await strapi.entityService.findMany('plugin::users-permissions.user', {
-                filters: { telNumber },
+                filters: { telNumber: telNumber },
                 limit: 1,
             });
     
@@ -389,6 +389,7 @@ module.exports = {
             const rvm = await strapi.entityService.findMany('api::recycle-machine.recycle-machine', {
                 filters: { serialNumber },
                 limit: 1, // We only need one RVM to be returned
+                populate: ['cabinet_status'];
             });
         
             // If the RVM with the provided serial number is not found
@@ -397,7 +398,7 @@ module.exports = {
             }
         
             // Assuming there's a field 'status' that indicates whether the RVM is online or offline
-            const rvmStatus = rvm[0].status || "offline"; // Default to "offline" if the status is missing
+            const rvmStatus = rvm[0].cabinet_status?.label || "offline"; // Default to "offline" if the status is missing
         
             // Send success response with the RVM status
             return ctx.send({
