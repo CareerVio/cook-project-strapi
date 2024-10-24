@@ -378,7 +378,7 @@ module.exports = {
     async heartbeat(ctx) {
         try {
             // Get the serial number from the request body
-            const { serialNumber } = ctx.request.body;
+            const { serialNumber, cabinet_status } = ctx.request.body;
         
             // Validate that the serial number is provided and is a string
             if (!serialNumber || typeof serialNumber !== 'string') {
@@ -389,7 +389,7 @@ module.exports = {
             const rvm = await strapi.entityService.findMany('api::recycle-machine.recycle-machine', {
                 filters: { serialNumber },
                 limit: 1, // We only need one RVM to be returned
-                populate: ['cabinet_status'];
+                populate: { someRelation: true },
             });
         
             // If the RVM with the provided serial number is not found
@@ -397,13 +397,24 @@ module.exports = {
                 return ctx.notFound({ error: "RVM not found" });
             }
         
-            // Assuming there's a field 'status' that indicates whether the RVM is online or offline
-            const rvmStatus = rvm[0].cabinet_status?.label || "offline"; // Default to "offline" if the status is missing
-        
-            // Send success response with the RVM status
+            // Update the cabinet status
+            await strapi.entityService.update('api::recycle-machine.recycle-machine', rvm.id, {
+                data: {
+                    cabinet_status, // Assuming 'newStatus' is a valid status ID or label
+                },
+            });
+
+            // Fetch the updated cabinet status
+            const updatedCabinet = await strapi.entityService.findOne('api::recycle-machine.recycle-machine', rvm.id, {
+                populate: { someRelation: true },
+            });
+
+            const updatedStatusLabel = updatedCabinet.cabinet_status?.label || "offline";
+
+            // Send success response with the serial number and updated cabinet status
             return ctx.send({
                 serialNumber: serialNumber,
-                status: rvmStatus,
+                status: updatedStatusLabel,
             });
     
         } catch (error) {
