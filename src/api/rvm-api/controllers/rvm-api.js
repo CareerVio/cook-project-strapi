@@ -386,14 +386,14 @@ module.exports = {
             }
         
             // Search for the RVM machine by serial number in the database
-            const rvm = await strapi.entityService.findMany('api::recycle-machine.recycle-machine', {
+            const [ rvm ] = await strapi.entityService.findMany('api::recycle-machine.recycle-machine', {
                 filters: { serialNumber },
                 limit: 1, // We only need one RVM to be returned
                 populate: ['cabinet_status'],
             });
             console.log(rvm);
             // If the RVM with the provided serial number is not found
-            if (!rvm || rvm.length === 0) {
+            if (!rvm) {
                 return ctx.notFound({ error: "RVM not found" });
             }
         
