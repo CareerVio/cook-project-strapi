@@ -389,7 +389,7 @@ module.exports = {
             const rvm = await strapi.entityService.findMany('api::recycle-machine.recycle-machine', {
                 filters: { serialNumber },
                 limit: 1, // We only need one RVM to be returned
-                populate: { someRelation: true },
+                populate: ['cabinet_status'],
             });
             console.log(rvm);
             // If the RVM with the provided serial number is not found
@@ -406,7 +406,7 @@ module.exports = {
 
             // Fetch the updated cabinet status
             const updatedCabinet = await strapi.entityService.findOne('api::recycle-machine.recycle-machine', rvm.id, {
-                populate: { someRelation: true },
+                populate: ['cabinet_status'],
             });
 
             const updatedStatusLabel = updatedCabinet.cabinet_status?.label || "offline";
