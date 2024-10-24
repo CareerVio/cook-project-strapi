@@ -391,7 +391,7 @@ module.exports = {
                 limit: 1, // We only need one RVM to be returned
                 populate: { someRelation: true },
             });
-        
+            console.log(rvm);
             // If the RVM with the provided serial number is not found
             if (!rvm || rvm.length === 0) {
                 return ctx.notFound({ error: "RVM not found" });
