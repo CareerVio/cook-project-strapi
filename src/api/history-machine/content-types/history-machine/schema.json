@@ -14,7 +14,7 @@
   "attributes": {
     "type": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "date": {
       "type": "date",
@@ -37,7 +37,8 @@
       "target": "plugin::users-permissions.user"
     },
     "quantity": {
-      "type": "integer"
+      "type": "integer",
+      "default": 0
     },
     "cabinet": {
       "type": "relation",
@@ -50,8 +51,27 @@
     "status": {
       "type": "string"
     },
-    "point_earned": {
-      "type": "integer"
+    "weight": {
+      "type": "decimal"
+    },
+    "isValidBottle": {
+      "type": "boolean"
+    },
+    "brand": {
+      "type": "string"
+    },
+    "size": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "decimal"
+    },
+    "telNumber": {
+      "type": "string",
+      "required": true
+    },
+    "contribute": {
+      "type": "string"
     }
   }
 }

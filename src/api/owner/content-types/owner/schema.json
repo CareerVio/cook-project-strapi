@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "owners",
+  "info": {
+    "singularName": "owner",
+    "pluralName": "owners",
+    "displayName": "Owner",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "idCardNumber": {
+      "type": "string"
+    },
+    "companyName": {
+      "type": "string"
+    },
+    "taxId": {
+      "type": "string"
+    },
+    "address": {
+      "type": "text"
+    },
+    "contactNumber": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user"
+    }
+  }
+}
