@@ -398,23 +398,32 @@ module.exports = {
             }
         
             // Update the cabinet status
-            await strapi.entityService.update('api::recycle-machine.recycle-machine', rvm.id, {
-                data: {
-                    cabinet_status, // Assuming 'newStatus' is a valid status ID or label
-                },
-            });
+            if (cabinet_status) {
+                await strapi.entityService.update('api::recycle-machine.recycle-machine', rvm.id, {
+                    data: {
+                        cabinet_status, // Assuming 'newStatus' is a valid status ID or label
+                    },
+                });
+            }
+           
 
             // Fetch the updated cabinet status
             const updatedCabinet = await strapi.entityService.findOne('api::recycle-machine.recycle-machine', rvm.id, {
-                populate: ['cabinet_status'],
+                populate: ['cabinet_status','firmware','checksum'],
             });
 
             const updatedStatusLabel = updatedCabinet.cabinet_status?.label || "offline";
+            const firmware = updatedCabinet.firmware?.url;
+            const checksum = updatedCabinet.checksum?.url;
+            const version = updatedCabinet.version;
 
             // Send success response with the serial number and updated cabinet status
             return ctx.send({
                 serialNumber: serialNumber,
                 status: updatedStatusLabel,
+                version,
+                checksum,
+                firmware,
             });
     
         } catch (error) {
