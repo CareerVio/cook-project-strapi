@@ -421,9 +421,9 @@ module.exports = {
             return ctx.send({
                 serialNumber: serialNumber,
                 status: updatedStatusLabel,
-                version,
-                checksum,
-                firmware,
+                version: version,
+                checksum: checksum,
+                firmware: firmware,
             });
     
         } catch (error) {
