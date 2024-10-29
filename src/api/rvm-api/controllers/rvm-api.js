@@ -1,5 +1,6 @@
 'use strict';
 
+const host = process.env.PUBLIC_HOST || 'localhost';
 module.exports = {
     // 1. getProfile Enpoint to get user profile by phone number
     async getProfile(ctx) {
@@ -413,8 +414,8 @@ module.exports = {
             });
 
             const updatedStatusLabel = updatedCabinet.cabinet_status?.label || "offline";
-            const firmware = updatedCabinet.firmware?.url;
-            const checksum = updatedCabinet.checksum?.url;
+            const firmware = updatedCabinet.firmware?.url ? host + updatedCabinet.firmware.url : null;
+            const checksum = updatedCabinet.checksum?.url ? host + updatedCabinet.checksum.url : null;
             const version = updatedCabinet.version;
 
             // Send success response with the serial number and updated cabinet status
