@@ -77,7 +77,7 @@ module.exports = {
                 }
 
                 // Get points for the given bottle size, default to 0 if size not found
-                const points_per_bottle = size_point_mapping[bottle_size] || 0;
+                const points_per_bottle = size_point_mapping[bottle_size] || 1;
                 total_bottles += quantity;
 
                 if (points_per_bottle) {
@@ -133,7 +133,7 @@ module.exports = {
                 }
 
                 // Get points for the given can size, default to 0 if size not found
-                const points_per_can = size_point_mapping[can_size] || 0;
+                const points_per_can = size_point_mapping[can_size] || 1;
                 total_cans += quantity;
 
                 if (points_per_can) {
